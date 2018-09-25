@@ -1,3 +1,6 @@
+import api from '../../api/imgur';
+    // API helper
+
 const state = {
     token: null
 };
@@ -23,5 +26,9 @@ const actions = {
         //in commit(), we pass the mutation name as first param, an the value in the second param
 
         commit('setToken', null);
+    },
+    
+    login: () => {
+        api.login();
     }
 };
