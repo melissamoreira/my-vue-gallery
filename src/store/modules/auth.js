@@ -32,3 +32,10 @@ const actions = {
         api.login();
     }
 };
+
+export default {
+    state,      //Equals state: state
+    getters,    //getters: getters
+    mutations,
+    actions    
+};

@@ -2,7 +2,7 @@ import qs from 'qs';
 import keys from '../../keys';
 
 const CLIENT_ID = keys.imgurAPI;
-const ROOT_URL = 'https://api.imgur.com';
+const ROUTE_URL = 'https://api.imgur.com';
 
 export default {
     login: () => {
