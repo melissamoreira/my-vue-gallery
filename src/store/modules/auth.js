@@ -1,6 +1,9 @@
 import api from '../../api/imgur';
     // API helper
 
+import qs from 'qs'; //QueryString lib
+
+
 const state = {
     token: null
 };
@@ -30,6 +33,14 @@ const actions = {
     
     login: () => {
         api.login();
+    },
+
+    finalizeLogin: ({ commit }, hash) => {
+        
+        const query = qs.parse(hash.replace('#', '')); //const query has the access token
+
+        commit('setToken', query.access_token);
+
     }
 };
 
