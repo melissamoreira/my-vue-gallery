@@ -1,19 +1,14 @@
 import api from '../../api/imgur';
-    // API helper
-
-import qs from 'qs'; //QueryString lib
-
+import qs from 'qs';
 
 const state = {
-    token: null
+    token: window.localStorage.getItem('imgur_token')
+    //Checking the localStorage
 };
 
 const getters = {
 
-    //state here is a param, not the const above
-
     isLoggedIn: (state) => !!state.token
-                //returns a boolean value
 };
 
 const mutations = {
@@ -24,23 +19,23 @@ const mutations = {
 
 const actions = {
     //we use the commit function to call a mutation!
-    
-    logout: ({ commit }) => {
-        //in commit(), we pass the mutation name as first param, an the value in the second param
 
+    logout: ({ commit }) => {
         commit('setToken', null);
     },
-    
+
     login: () => {
         api.login();
     },
 
     finalizeLogin: ({ commit }, hash) => {
-        
-        const query = qs.parse(hash.replace('#', '')); //const query has the access token
+
+        const query = qs.parse(hash.replace('#', ''));
 
         commit('setToken', query.access_token);
 
+        window.localStorage.setItem('imgur_token', query.access_token);
+        //Persisting the login data with localStorage (browser native resource)
     }
 };
 
@@ -48,5 +43,5 @@ export default {
     state,      //Equals state: state
     getters,    //getters: getters
     mutations,
-    actions    
+    actions
 };
