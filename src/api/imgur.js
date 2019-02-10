@@ -1,5 +1,6 @@
 import qs from 'qs';
 import keys from '../../keys';
+import axios from 'axios';
 
 const CLIENT_ID = keys.imgurAPI;
 const ROUTE_URL = 'https://api.imgur.com';
@@ -13,6 +14,15 @@ export default {
         };
 
         window.location = `${ROUTE_URL}/oauth2/authorize?${qs.stringify(queryString)}`;
+    },
+
+    fetchImages(token) {
+        return axios.get( `${ROUTE_URL}/3/account/me/images`),
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
     }
 };
 
