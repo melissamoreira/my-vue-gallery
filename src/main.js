@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 
 //Defining the new VueRouter instance with the routes
 
-const router = new VueRouter({
+export const router = new VueRouter({
   mode: 'history',
   routes: [
     { path: '/oauth2/callback', component: AuthHandler }
